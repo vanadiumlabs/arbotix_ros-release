@@ -1,0 +1,12 @@
+Source: ros-groovy-arbotix-controllers
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 7.0.50~), ros-groovy-catkin
+Homepage: http://ros.org/wiki/arbotix_controllers
+Standards-Version: 3.9.2
+
+Package: ros-groovy-arbotix-controllers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-groovy-arbotix-python, ros-groovy-tf, ros-groovy-trajectory-msgs
+Description: Extends the arbotix_python package with a number of more sophisticated ROS wrappers for common devices.
