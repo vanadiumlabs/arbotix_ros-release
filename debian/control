@@ -1,0 +1,12 @@
+Source: ros-groovy-arbotix
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 7.0.50~), ros-groovy-catkin
+Homepage: http://ros.org/wiki/arbotix
+Standards-Version: 3.9.2
+
+Package: ros-groovy-arbotix
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-groovy-arbotix-controllers, ros-groovy-arbotix-firmware, ros-groovy-arbotix-msgs, ros-groovy-arbotix-python, ros-groovy-arbotix-sensors
+Description: ArbotiX Drivers
