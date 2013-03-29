@@ -1,0 +1,12 @@
+Source: ros-groovy-arbotix-msgs
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 7.0.50~), ros-groovy-catkin, ros-groovy-message-generation, ros-groovy-std-msgs
+Homepage: http://ros.org/wiki/arbotix_msgs
+Standards-Version: 3.9.2
+
+Package: ros-groovy-arbotix-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-groovy-message-runtime, ros-groovy-std-msgs
+Description: Messages and Services definitions for the ArbotiX.
