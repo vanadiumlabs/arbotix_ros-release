@@ -9,6 +9,7 @@ add_message_files(FILES
                  )
 
 add_service_files(FILES
+                  Enable.srv
                   Relax.srv
                   SetupChannel.srv
                  )
