@@ -2,7 +2,7 @@
 
 """
   servo_controller.py: classes for servo interaction
-  Copyright (c) 2011 Vanadium Labs LLC.  All right reserved.
+  Copyright (c) 2011-2013 Vanadium Labs LLC. All right reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
@@ -86,6 +86,7 @@ class DynamixelServo(Joint):
         rospy.Subscriber(name+'/command', Float64, self.commandCb)
         rospy.Service(name+'/relax', Relax, self.relaxCb)
         rospy.Service(name+'/enable', Enable, self.enableCb)
+        rospy.Service(name+'/set_speed', SetSpeed, self.setSpeedCb)
 
     def interpolate(self, frame):
         """ Get the new position to move to, in ticks. """
@@ -103,11 +104,20 @@ class DynamixelServo(Joint):
             # cap movement
             if self.last_cmd == self.desired:
                 self.dirty = False
+            # when fake, need to set position/velocity here
             if self.device.fake:
+                last_angle = self.position
                 self.position = self.last_cmd
+                t = rospy.Time.now()
+                self.velocity = (self.position - last_angle)/((t - self.last).to_nsec()/1000000000.0)
+                self.last = t
                 return None
             return int(ticks)
         else:
+            # when fake, need to reset velocity to 0 here.
+            if self.device.fake:
+                self.velocity = 0.0
+                self.last = rospy.Time.now()
             return None
 
     def setCurrentFeedback(self, reading):
@@ -189,7 +199,16 @@ class DynamixelServo(Joint):
         angle = (ticks - self.neutral) * self.rad_per_tick
         if self.invert:
             angle = -1.0 * angle
-        return angle        
+        return angle
+
+    def speedToTicks(self, rads_per_sec):
+        """ Convert speed in radians per second to ticks, applying limits. """
+        ticks = self.ticks * rads_per_sec / self.max_speed
+        if ticks >= self.ticks:
+            return self.ticks-1.0
+        if ticks < 0:
+            return 0
+        return ticks  
 
     def enableCb(self, req):
         """ Turn on/off servo torque, so that it is pose-able. """
@@ -221,6 +240,14 @@ class DynamixelServo(Joint):
                 self.dirty = True
                 self.active = True
                 self.desired = req.data
+                
+    def setSpeedCb(self, req):
+        """ Set servo speed. Requested speed is in radians per second.
+            Don't allow 0 which means "max speed" to a Dynamixel in joint mode. """
+        if not self.device.fake:
+            ticks_per_sec = max(1, int(self.speedToTicks(req.speed)))
+            self.device.setSpeed(self.id, ticks_per_sec)
+        return SetSpeedResponse()
 
 class HobbyServo(Joint):
 
