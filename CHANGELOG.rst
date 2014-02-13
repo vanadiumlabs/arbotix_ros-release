@@ -2,6 +2,9 @@
 Changelog for package arbotix_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.9.2 (2014-02-12)
+------------------
+
 0.9.1 (2014-01-28)
 ------------------
 * Added set_speed service to servo controller
