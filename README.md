@@ -1,3 +1,28 @@
+## arbotix (indigo) - 0.9.2-0
+
+The packages in the `arbotix` repository were released into the `indigo` distro by running `/usr/bin/bloom-release arbotix -t indigo -r indigo --new-track` on `Thu, 22 May 2014 07:05:01 -0000`
+
+These packages were released:
+- `arbotix`
+- `arbotix_controllers`
+- `arbotix_firmware`
+- `arbotix_msgs`
+- `arbotix_python`
+- `arbotix_sensors`
+
+Version of package(s) in repository `arbotix`:
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.9.2-0`
+
+Versions of tools used:
+- bloom version: `0.5.8`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.25`
+- rosdistro version: `0.3.4`
+- vcstools version: `0.1.30`
+
+
 ## arbotix - 0.9.2-0
 
 User `mikef@coruscant` released the packages in the `arbotix` repository by running `/usr/bin/bloom-release arbotix --track hydro --rosdistro hydro` on `Thu, 13 Feb 2014 04:49:49 -0000`
