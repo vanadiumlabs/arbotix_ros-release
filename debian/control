@@ -1,0 +1,12 @@
+Source: ros-jade-arbotix
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jade-catkin
+Homepage: http://ros.org/wiki/arbotix
+Standards-Version: 3.9.2
+
+Package: ros-jade-arbotix
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jade-arbotix-controllers, ros-jade-arbotix-firmware, ros-jade-arbotix-msgs, ros-jade-arbotix-python, ros-jade-arbotix-sensors
+Description: ArbotiX Drivers
