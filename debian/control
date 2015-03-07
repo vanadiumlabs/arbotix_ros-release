@@ -1,0 +1,12 @@
+Source: ros-jade-arbotix-python
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jade-catkin
+Homepage: http://ros.org/wiki/arbotix_python
+Standards-Version: 3.9.2
+
+Package: ros-jade-arbotix-python
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-serial, ros-jade-actionlib, ros-jade-arbotix-msgs, ros-jade-control-msgs, ros-jade-diagnostic-msgs, ros-jade-geometry-msgs, ros-jade-nav-msgs, ros-jade-rospy, ros-jade-sensor-msgs, ros-jade-tf
+Description: Bindings and low-level controllers for ArbotiX-powered robots.
