@@ -1,3 +1,30 @@
+## arbotix_ros (jade) - 0.10.0-0
+
+The packages in the `arbotix_ros` repository were released into the `jade` distro by running `/usr/bin/bloom-release arbotix_ros -t jade -r jade --edit` on `Sat, 07 Mar 2015 05:48:43 -0000`
+
+These packages were released:
+- `arbotix`
+- `arbotix_controllers`
+- `arbotix_firmware`
+- `arbotix_msgs`
+- `arbotix_python`
+- `arbotix_sensors`
+
+Version of package(s) in repository `arbotix_ros`:
+- upstream repository: https://github.com/vanadiumlabs/arbotix_ros.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.10.0-0`
+
+Versions of tools used:
+- bloom version: `0.5.16`
+- catkin_pkg version: `0.2.6`
+- rosdep version: `0.10.32`
+- rosdistro version: `0.4.0`
+- vcstools version: `0.1.35`
+
+
 ## arbotix (indigo) - 0.10.0-0
 
 The packages in the `arbotix` repository were released into the `indigo` distro by running `/usr/bin/bloom-release arbotix -t indigo -r indigo` on `Mon, 14 Jul 2014 20:47:59 -0000`
