@@ -1,0 +1,12 @@
+Source: ros-kinetic-arbotix-msgs
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin, ros-indigo-message-generation, ros-indigo-std-msgs
+Homepage: http://ros.org/wiki/arbotix_msgs
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-arbotix-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-message-runtime, ros-indigo-std-msgs
+Description: Messages and Services definitions for the ArbotiX.
