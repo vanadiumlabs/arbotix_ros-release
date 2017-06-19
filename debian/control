@@ -1,0 +1,12 @@
+Source: ros-kinetic-arbotix-python
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: http://ros.org/wiki/arbotix_python
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-arbotix-python
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-serial, ros-indigo-actionlib, ros-indigo-arbotix-msgs, ros-indigo-control-msgs, ros-indigo-diagnostic-msgs, ros-indigo-geometry-msgs, ros-indigo-nav-msgs, ros-indigo-rospy, ros-indigo-sensor-msgs, ros-indigo-tf
+Description: Bindings and low-level controllers for ArbotiX-powered robots.
