@@ -1,3 +1,32 @@
+## arbotix (kinetic) - 0.10.0-1
+
+The packages in the `arbotix` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release -r kinetic -t kinetic arbotix` on `Tue, 03 Apr 2018 22:33:08 -0000`
+
+These packages were released:
+- `arbotix`
+- `arbotix_controllers`
+- `arbotix_firmware`
+- `arbotix_msgs`
+- `arbotix_python`
+- `arbotix_sensors`
+
+Version of package(s) in repository `arbotix`:
+
+- upstream repository: https://github.com/vanadiumlabs/arbotix_ros.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `0.10.0-0`
+- new version: `0.10.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.6.4`
+- catkin_pkg version: `0.4.1`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.8`
+- vcstools version: `0.1.40`
+
+
 ## arbotix (kinetic) - 0.10.0-0
 
 The packages in the `arbotix` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release -r kinetic -t kinetic arbotix` on `Mon, 19 Jun 2017 20:26:17 -0000`
