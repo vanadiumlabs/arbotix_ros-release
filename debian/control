@@ -1,0 +1,12 @@
+Source: ros-kinetic-arbotix-controllers
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin
+Homepage: http://ros.org/wiki/arbotix_controllers
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-arbotix-controllers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-arbotix-python, ros-kinetic-tf, ros-kinetic-trajectory-msgs
+Description: Extends the arbotix_python package with a number of more sophisticated ROS wrappers for common devices.
