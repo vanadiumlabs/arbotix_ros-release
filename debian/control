@@ -1,0 +1,12 @@
+Source: ros-melodic-arbotix-firmware
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-catkin
+Homepage: http://ros.org/wiki/arbotix_firmware
+Standards-Version: 3.9.2
+
+Package: ros-melodic-arbotix-firmware
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: Firmware source code for ArbotiX ROS bindings.
