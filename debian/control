@@ -1,0 +1,12 @@
+Source: ros-melodic-arbotix-python
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-catkin
+Homepage: http://ros.org/wiki/arbotix_python
+Standards-Version: 3.9.2
+
+Package: ros-melodic-arbotix-python
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-serial, ros-melodic-actionlib, ros-melodic-arbotix-msgs, ros-melodic-control-msgs, ros-melodic-diagnostic-msgs, ros-melodic-geometry-msgs, ros-melodic-nav-msgs, ros-melodic-rospy, ros-melodic-sensor-msgs, ros-melodic-tf
+Description: Bindings and low-level controllers for ArbotiX-powered robots.
