@@ -1,0 +1,12 @@
+Source: ros-melodic-arbotix-msgs
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-catkin, ros-melodic-message-generation, ros-melodic-std-msgs
+Homepage: http://ros.org/wiki/arbotix_msgs
+Standards-Version: 3.9.2
+
+Package: ros-melodic-arbotix-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-melodic-message-runtime, ros-melodic-std-msgs
+Description: Messages and Services definitions for the ArbotiX.
