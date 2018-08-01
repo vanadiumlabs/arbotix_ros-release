@@ -1,0 +1,12 @@
+Source: ros-melodic-arbotix
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-catkin
+Homepage: http://ros.org/wiki/arbotix
+Standards-Version: 3.9.2
+
+Package: ros-melodic-arbotix
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-melodic-arbotix-controllers, ros-melodic-arbotix-firmware, ros-melodic-arbotix-msgs, ros-melodic-arbotix-python, ros-melodic-arbotix-sensors
+Description: ArbotiX Drivers
