@@ -1,0 +1,12 @@
+Source: ros-lunar-arbotix-python
+Section: misc
+Priority: extra
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lunar-catkin
+Homepage: http://ros.org/wiki/arbotix_python
+Standards-Version: 3.9.2
+
+Package: ros-lunar-arbotix-python
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-serial, ros-lunar-actionlib, ros-lunar-arbotix-msgs, ros-lunar-control-msgs, ros-lunar-diagnostic-msgs, ros-lunar-geometry-msgs, ros-lunar-nav-msgs, ros-lunar-rospy, ros-lunar-sensor-msgs, ros-lunar-tf
+Description: Bindings and low-level controllers for ArbotiX-powered robots.
