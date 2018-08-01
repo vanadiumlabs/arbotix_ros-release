@@ -1,0 +1,43 @@
+ros-lunar-arbotix-msgs (0.10.0-0xenial) xenial; urgency=high
+
+
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Mon, 14 Jul 2014 04:00:00 -0000
+
+ros-lunar-arbotix-msgs (0.9.2-0xenial) xenial; urgency=high
+
+
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Wed, 12 Feb 2014 05:00:00 -0000
+
+ros-lunar-arbotix-msgs (0.9.1-0xenial) xenial; urgency=high
+
+  * Added set_speed service to servo controller
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Tue, 28 Jan 2014 05:00:00 -0000
+
+ros-lunar-arbotix-msgs (0.9.0-0xenial) xenial; urgency=high
+
+  * add new enable service
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Thu, 22 Aug 2013 04:00:00 -0000
+
+ros-lunar-arbotix-msgs (0.8.2-0xenial) xenial; urgency=high
+
+  * updates to cmakelists.txt and package.xml, fixes #2 <https://github.com/vanadiumlabs/arbotix_ros/issues/2>
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Thu, 28 Mar 2013 04:00:00 -0000
+
+ros-lunar-arbotix-msgs (0.8.1-0xenial) xenial; urgency=high
+
+
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Sat, 09 Mar 2013 05:00:00 -0000
+
+ros-lunar-arbotix-msgs (0.8.0-0xenial) xenial; urgency=high
+
+  * import drivers and catkinize
+
+ -- Michael Ferguson <mike@vanadiumlabs.com>  Thu, 21 Feb 2013 05:00:00 -0000
+
+
