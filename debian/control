@@ -1,0 +1,12 @@
+Source: ros-noetic-arbotix-msgs
+Section: misc
+Priority: optional
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin, ros-noetic-message-generation, ros-noetic-std-msgs
+Homepage: http://ros.org/wiki/arbotix_msgs
+Standards-Version: 3.9.2
+
+Package: ros-noetic-arbotix-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-message-runtime, ros-noetic-std-msgs
+Description: Messages and Services definitions for the ArbotiX.
