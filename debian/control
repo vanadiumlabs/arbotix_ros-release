@@ -1,0 +1,12 @@
+Source: ros-noetic-arbotix-python
+Section: misc
+Priority: optional
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/arbotix_python
+Standards-Version: 3.9.2
+
+Package: ros-noetic-arbotix-python
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-serial, ros-noetic-actionlib, ros-noetic-arbotix-msgs, ros-noetic-control-msgs, ros-noetic-diagnostic-msgs, ros-noetic-geometry-msgs, ros-noetic-nav-msgs, ros-noetic-rospy, ros-noetic-sensor-msgs, ros-noetic-tf
+Description: Bindings and low-level controllers for ArbotiX-powered robots.
