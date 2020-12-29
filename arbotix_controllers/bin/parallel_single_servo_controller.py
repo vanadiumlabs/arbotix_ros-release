@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
   parallel_single_servo_controller.py - controls a single-servo parallel-jaw gripper
@@ -27,7 +27,6 @@
   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-import roslib; roslib.load_manifest('arbotix_controllers')
 import rospy, tf
 import thread
 

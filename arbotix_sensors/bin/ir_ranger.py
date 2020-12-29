@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
   ir_ranger.py - convert analog stream into range measurements
@@ -27,7 +27,6 @@
   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-import roslib; roslib.load_manifest('arbotix_sensors')
 import rospy
 
 from sensor_msgs.msg import Range

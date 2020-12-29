@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copyright (c) 2008-2011 Vanadium Labs LLC. 
 # All right reserved.
@@ -30,14 +30,18 @@
 
 ## @file arbotix.py Low-level code to control an ArbotiX.
 
-import serial, time, sys, thread
-from ax12 import *
-from struct import unpack
+import serial, time, sys, threading
+from arbotix_python.ax12 import *
+from struct import unpack, pack
+
+## @brief ArbotiX errors. Used by now to handle broken serial connections.
+class ArbotiXException(Exception):
+    pass
 
 ## @brief This class controls an ArbotiX, USBDynamixel, or similar board through a serial connection.
 class ArbotiX:
 
-    ## @brief Constructs an ArbotiX instance and opens the serial connection.
+    ## @brief Constructs an ArbotiX instance, optionally opening the serial connection.
     ##
     ## @param port The name of the serial port to open.
     ## 
@@ -45,17 +49,38 @@ class ArbotiX:
     ##
     ## @param timeout The timeout to use for the port. When operating over a wireless link, you may need to
     ## increase this.
-    def __init__(self, port="/dev/ttyUSB0",baud=115200, timeout = 0.1):
-        self._mutex = thread.allocate_lock()
+    ##
+    ## @param open Whether to open immediately the serial port.
+    def __init__(self, port="/dev/ttyUSB0", baud=115200, timeout=0.1, open_port=True):
+        self._mutex = threading._allocate_lock()
         self._ser = serial.Serial()
         
-        self._ser.baudrate = baud
         self._ser.port = port
+        self._ser.baudrate = baud
         self._ser.timeout = timeout
-        self._ser.open()
+
+        if open_port:
+            self._ser.open()
 
         ## The last error level read back
         self.error = 0
+
+    def __write__(self, msg):
+        try:
+            self._ser.write(msg)
+        except serial.SerialException as e:
+            self._mutex.release()
+            raise ArbotiXException(e)
+
+    def openPort(self):
+        self._ser.close()
+        try:
+            self._ser.open()
+        except serial.SerialException as e:
+            raise ArbotiXException(e)
+
+    def closePort(self):
+        self._ser.close()
 
     ## @brief Read a dynamixel return packet in an iterative attempt.
     ##
@@ -64,34 +89,34 @@ class ArbotiX:
     ## @return The error level returned by the device. 
     def getPacket(self, mode, id=-1, leng=-1, error=-1, params = None):
         try:
-            d = self._ser.read()     
+            d = self._ser.read()
         except Exception as e:
-            print e
+            print(e)
             return None
         # need a positive byte
-        if d == '':
+        if not d or d == '':
             return None
 
         # now process our byte
         if mode == 0:           # get our first 0xFF
-            if ord(d) == 0xff:   
+            if d == b'\xff':   
                 return self.getPacket(1)
             else:
                 return self.getPacket(0)
         elif mode == 1:         # get our second 0xFF
-            if ord(d) == 0xff:
+            if d == b'\xff':
                 return self.getPacket(2)
             else:
                 return self.getPacket(0)
         elif mode == 2:         # get id
-            if d != 0xff:
+            if d != b'\xff':
                 return self.getPacket(3, ord(d))
             else:              
                 return self.getPacket(0)
         elif mode == 3:         # get length
             return self.getPacket(4, id, ord(d))
         elif mode == 4:         # read error    
-            self.error = ord(d)
+            self.error = d
             if leng == 2:
                 return self.getPacket(6, id, leng, ord(d), list())
             else:
@@ -127,28 +152,19 @@ class ArbotiX:
         try:      
             self._ser.flushInput()
         except Exception as e:
-            print e
+            print(e)
         length = 2 + len(params)
         checksum = 255 - ((index + length + ins + sum(params))%256)
-        try: 
-            self._ser.write(chr(0xFF)+chr(0xFF)+chr(index)+chr(length)+chr(ins))
-        except Exception as e:
-            print e
-            self._mutex.release()
-            return None
+        packet = bytearray()
+        packet.append(0xFF)
+        packet.append(0xFF)
+        packet.append(index)
+        packet.append(length)
+        packet.append(ins)
+        self.__write__(packet)
         for val in params:
-            try:
-                self._ser.write(chr(val))
-            except Exception as e:
-                print e
-                self._mutex.release()
-                return None
-        try:
-            self._ser.write(chr(checksum))
-        except Exception as e:
-            print e
-            self._mutex.release()
-            return None
+            self.__write__(bytes([val]))
+        self.__write__(bytes([checksum]))
         if ret:
             values = self.getPacket(0)
         self._mutex.release()
@@ -200,13 +216,19 @@ class ArbotiX:
             self._ser.flushInput()
         except:
             pass  
-        self._ser.write(chr(0xFF)+chr(0xFF)+chr(254)+chr(length)+chr(AX_SYNC_WRITE))        
-        self._ser.write(chr(start))              # start address
-        self._ser.write(chr(lbytes))             # bytes to write each servo
+        packet = bytearray()
+        packet.append(0xFF)
+        packet.append(0xFF)
+        packet.append(254)
+        packet.append(length)
+        packet.append(AX_SYNC_WRITE)
+        self.__write__(packet)
+        self.__write__(bytes([start]))              # start address
+        self.__write__(bytes([lbytes]))             # bytes to write each servo
         for i in output:
-            self._ser.write(chr(i))
+            self.__write__(bytes([i]))
         checksum = 255 - ((254 + length + AX_SYNC_WRITE + start + lbytes + sum(output))%256)
-        self._ser.write(chr(checksum))
+        self.__write__(bytes([checksum]))
         self._mutex.release()
 
     ## @brief Read values of registers on many servos.
@@ -450,10 +472,13 @@ class ArbotiX:
     ##
     ## @param index The ID of the pin to read (0 to 7).
     ##
-    ## @return 8-bit analog value of the pin, -1 if error.
-    def getAnalog(self, index):
+    ## @param leng The number of bytes to read (1 or 2).
+    ##
+    ## @return 8-bit/16-bit analog value of the pin, -1 if error.
+    def getAnalog(self, index, leng=1):
         try:
-            return int(self.read(253, self.ANA_BASE+int(index), 1)[0])
+            val = self.read(253, self.ANA_BASE+int(index), leng)
+            return sum(val[i] << (i * 8) for i in range(leng))
         except:
             return -1
 
@@ -507,7 +532,7 @@ class ArbotiX:
     def setServo(self, index, value):
         if index > 7: return -1
         if value != 0 and (value < 500 or value > 2500):
-            print "ArbotiX Error: Servo value out of range:",val
+            print("ArbotiX Error: Servo value out of range:", value)
         else:
             self.write(253, self._SERVO_BASE + 2*index, [value%256, value>>8])
         return 0
