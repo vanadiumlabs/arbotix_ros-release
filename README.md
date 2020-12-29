@@ -1,3 +1,32 @@
+## arbotix (noetic) - 0.11.0-1
+
+The packages in the `arbotix` repository were released into the `noetic` distro by running `/usr/bin/bloom-release -r noetic -t noetic arbotix` on `Tue, 29 Dec 2020 21:46:10 -0000`
+
+These packages were released:
+- `arbotix`
+- `arbotix_controllers`
+- `arbotix_firmware`
+- `arbotix_msgs`
+- `arbotix_python`
+- `arbotix_sensors`
+
+Version of package(s) in repository `arbotix`:
+
+- upstream repository: https://github.com/vanadiumlabs/arbotix_ros.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.11.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.0`
+- catkin_pkg version: `0.4.20`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.40`
+
+
 ## arbotix (melodic) - 0.10.0-0
 
 The packages in the `arbotix` repository were released into the `melodic` distro by running `/usr/bin/bloom-release -r melodic -t melodic arbotix` on `Wed, 01 Aug 2018 00:50:19 -0000`
