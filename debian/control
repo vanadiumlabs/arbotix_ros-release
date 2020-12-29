@@ -1,0 +1,12 @@
+Source: ros-noetic-arbotix
+Section: misc
+Priority: optional
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/arbotix
+Standards-Version: 3.9.2
+
+Package: ros-noetic-arbotix
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-arbotix-controllers, ros-noetic-arbotix-firmware, ros-noetic-arbotix-msgs, ros-noetic-arbotix-python, ros-noetic-arbotix-sensors
+Description: ArbotiX Drivers
