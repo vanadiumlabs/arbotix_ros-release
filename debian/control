@@ -1,0 +1,12 @@
+Source: ros-noetic-arbotix-sensors
+Section: misc
+Priority: optional
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/arbotix_sensors
+Standards-Version: 3.9.2
+
+Package: ros-noetic-arbotix-sensors
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-arbotix-python
+Description: Extends the arbotix_node package with a number of more sophisticated ROS wrappers for common devices.
