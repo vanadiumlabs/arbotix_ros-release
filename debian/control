@@ -1,0 +1,12 @@
+Source: ros-noetic-arbotix-controllers
+Section: misc
+Priority: optional
+Maintainer: Michael Ferguson <mike@vanadiumlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/arbotix_controllers
+Standards-Version: 3.9.2
+
+Package: ros-noetic-arbotix-controllers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-arbotix-python, ros-noetic-tf, ros-noetic-trajectory-msgs
+Description: Extends the arbotix_python package with a number of more sophisticated ROS wrappers for common devices.
